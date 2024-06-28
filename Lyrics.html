@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="...">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid" style="background-color: orange; height: 70px;">
+        <a class="navbar-brand" href="#"><b>{{username}}</b></a>
+        <nav class="nav nav-pills nav-fill">
+            <a class="nav-link active" aria-current="page" href="/creator_dashboard" style="background-color: black;">Creator Account</a>
+            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="/">Log out</a>
+        </nav>
+    </nav>
+    <div class="card border-success mb-3" style="margin-top: 20px;">
+        <div class="card-header bg-transparent border-success" style="height:60px">{{title}}</div>
+        <div class="card-body text-success" style="height: 400px;">
+        <h5 class="card-title">{{lyrics}}</h5>
+        </div>
+        <div class="card-footer bg-transparent border-success" style="height:60px"><a><button class="btn btn-outline-danger" style="margin-right: 25px;margin-left:35px;"> <!-- bootstrap styling -->
+            Like
+            <i class="fas fa-heart"></i> <!-- Font Awesome heart icon -->
+        </button></a></div>
+    </div>
+</body>
+</html>

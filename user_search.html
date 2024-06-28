@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .card:hover {
+            box-shadow: 10px 10px 10px rgb(226, 43, 223)
+            /* Add any other styles for the hover effect */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="...">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid" style="background-color: orange; height: 70px;">
+        <a class="navbar-brand" href="/dashboard"><b>{{username}}</b></a>
+        <nav class="nav nav-pills nav-fill">
+            <form class="d-flex" method="GET" action="/search_songs">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='query'>
+                <button class="btn btn-outline-success" type="submit" style='margin-right:10px;'>Search</button>
+            </form>
+            <a class="nav-link active" aria-current="page" href="/login_creator" style="background-color: black;">Creator Account</a>
+            <a class="nav-link" href="/create_new_playlist">Create New Playlist</a>
+            <a class="nav-link" href="/">Log out</a>
+        </nav>
+    </nav>
+    <div style="margin-top: 15px; margin-left: 15px; margin-bottom: 20px;">
+        <h4>Recomanded Track</h4>
+    </div>
+    {% for i in filtered_songs %}
+        <div class="card" style="height:25rem;width: 20rem; display: inline-block; margin: 10px;">
+            <img src="static/{{i.creator.name}}.jpeg" class="card-img-top" style="height: 200px;">
+            <div class="card-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.creator.name}}</p>
+                <a style="text-decoration:none; color:white;" href='/user_view_lyrics/{{i.song_id}}'><button type="submit" class="btn btn-primary" style="margin-right: 10px;">Lyrics</button></a>
+                <form method="POST" action="/process_checkbox">
+                    <input type="checkbox" id="{{i.song_id}}" name="like_song" class="btn-check" autocomplete="off">
+                    <label for="{{i.song_id}}" class="btn btn-outline-danger" style="margin-right: 15px;">
+                        <i id="heartIcon" class="fas fa-heart"></i>
+                    </label>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    <div style="margin-top: 15px; margin-left: 15px; margin-bottom: 20px;">
+        <h4>Album</h4>
+    </div>
+    {% for i in filtered_singers %}
+        <a href="/Album/{{i.singer_id}}">
+            <div class="card" style="width: 18rem; display: inline-block; margin:10px">
+                <img src="{{url_for('static', filename=i.name + '.jpeg')}}" class="card-img-top" style="height: 200px;" >
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">{{i.name}}</h5>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</body>
+</html>
